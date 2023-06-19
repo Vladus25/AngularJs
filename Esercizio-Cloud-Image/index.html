@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title page-title></title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.2/angular-datatables.min.js"></script>
+  <style>
+    body {
+      font-family: ”Open Sans”, sans-serif
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Files</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div ng-controller="UploadCtrl">
+      <form name="uploadForm" ng-submit="upload()">
+        <h3>File Uploader</h3>
+        <div class="input-group">
+          <input onchange="angular.element(this).scope().onChange(this.files)" class="form-control" type="file" />
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">Upload</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div ng-controller="tableCtrl">
+    <h3>Uploaded Files</h3>
+    <table datatable="ng" class="table row-border table-striped table-hover compact display">
+      <thead>
+        <tr>
+          <th>Upload Date</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(key,value) in files">
+          <td>{{value.timestamp | date}}</td>
+          <td>{{value.name}}</td>
+          <td>
+            <a href="{{value.url}}" class="btn btn-default" target="_blank">Download</a>
+            <a href="#" class="btn btn-default" ng-click="delete(key, value.name)">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+
+  <script>
+    firebase.initializeApp({
+      apiKey: "AIzaSyA_MT1fzovJe17R1sRojZqHIV74t_9lwrI",
+      authDomain: "imagecloud-7df99.firebaseapp.com",
+      databaseURL: "https://imagecloud-7df99.firebaseio.com",
+      projectId: "imagecloud-7df99",
+      storageBucket: "imagecloud-7df99.appspot.com",
+      messagingSenderId: "178175064235",
+      appId: "1:178175064235:web:b47c6a5363e5a45c375fee",
+      measurementId: "G-NCHE4H224N",
+  });
+
+  </script>
+  <script src="./script.js"></script>
+  <script src="./controllers.js"></script>
+</body>
+
+</html>

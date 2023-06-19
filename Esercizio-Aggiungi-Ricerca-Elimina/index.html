@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body ng-app="myApp">
+    <div class="container">
+      <div class="list-container" ng-controller="myController">
+        <h1 class="text-center">Lista di elementi</h1>
+        <div class="d-flex mb-3">
+          <input type="text" class="form-control me-2" ng-model="newItem" placeholder="Aggiungi un elemento" />
+          <button class="btn btn-primary" ng-click="addItem()">Aggiungi</button>
+        </div>
+        <input type="text" class="form-control mb-3" ng-model="searchTerm" placeholder="Cerca elemento" />
+        <button class="btn btn-danger mt-3" ng-click="removeItem()" ng-disabled="selectedItem === null">Rimuovi
+          selezionato</button>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="item in items | filter:searchTerm" ng-click="selectItem($index)"
+            ng-class="{ 'active': selectedItem === $index }">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div ng-controller="userController">
+      <p>Nome: <input type="text" ng-model="utente.nome" /></p>
+      <p>Cognome: <input type="text" ng-model="utente.cognome" /></p>
+      <p>{{saluta()}}</p>
+      <p>{{[5,3,6,1] | orderBy}}</p>
+      <ul>
+        <li ng-repeat="citta in elencoCitta | orderBy:'nome'">{{citta.nome}}</li>
+      </ul>
+    </div> -->
+  </body>
+</html>
+

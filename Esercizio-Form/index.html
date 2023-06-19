@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="FormController" class="container">
+        <h1 class="text-center">Form di contatto</h1>
+        <form name="contactForm" ng-submit="submitForm()" novalidate>
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="name" ng-model="formData.name" ng-change="hideErrorMessage()" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" ng-model="formData.email" ng-change="hideErrorMessage()" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Messaggio</label>
+                <textarea class="form-control" id="message" rows="5" ng-model="formData.message" ng-change="hideErrorMessage()" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Invia</button>
+        </form>
+        <div ng-if="showSuccessMessage" class="alert alert-success mt-3">
+            {{ successMessage }}
+        </div>
+        <div ng-if="showErrorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+        </div>
+    </div>
+</body>
+
+</html>
