@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js"></script>
+</head>
+
+<body ng-app="movieSearchApp" ng-controller="movieSearchController">
+  <div class="container">
+    <h1 class="text-center">Movie Search</h1>
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" ng-model="searchQuery" placeholder="Enter movie title">
+          <button class="btn btn-primary" ng-click="searchMovies()">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="movie-details" ng-if="movies !== undefined">
+      <h2>{{ movies.Title }}</h2>
+      <p><strong>Anno:</strong> {{ movies.Year }}</p>
+      <p><strong>Rating:</strong> {{ movies.imdbRating }}</p>
+      <p><strong>Genere:</strong> {{ movies.Genre }}</p>
+      <p><strong>Descrizione:</strong> {{ movies.Plot }}</p>
+      <p><strong>Attori:</strong> {{ movies.Actors }}</p>
+      <img ng-src="{{ movies.Poster }}" alt="{{ movies.Title }} poster" class="img-fluid">
+    </div>
+    <div class="no-movies-found" ng-if="movies == undefined">No movies found.</div>
+  </div>
+</body>
+
+</html>

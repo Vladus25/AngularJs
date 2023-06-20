@@ -16,26 +16,15 @@ function UploadCtrl($scope, $firebaseStorage, $firebaseObject) {
                 formData.name = fileToUpload.name;
                 formData.timestamp = firebase.database.ServerValue.TIMESTAMP;
                 formData.url = snapshot.downloadURL;
+                window.alert('Il file è stato caricato con successo!');
                 formData.$save().then(() => {
                     angular.element("input[type='file']").val(null);
                     fileToUpload = null;
+                    window.alert('Il file è stato caricato con successo!');
                 })
             });
         }
     }
 }
 
-function tableCtrl($scope, $firebaseStorage, $firebaseObject){
-    let fileRef = firebase.database().ref('Files');
-    $scope.files = $firebaseObject(fileRef);
-    $scope.delete = (key, name) => {
-        let storageRef = firebase.storage().ref(name);
-        let storage = $firebaseStorage(storageRef);
-        storage.$delete().then(() => {
-            delete $scope.files[key];
-            $scope.files.$save();
-        })
-    }
-}
-
-angular.module('app').controller('UploadCtrl', UploadCtrl).controller('tableCtrl', tableCtrl)
+angular.module('app').controller('UploadCtrl', UploadCtrl)
