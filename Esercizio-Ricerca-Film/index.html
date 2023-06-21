@@ -24,16 +24,17 @@
       </div>
     </div>
 
-    <div class="movie-details" ng-if="movies !== undefined">
-      <h2>{{ movies.Title }}</h2>
-      <p><strong>Anno:</strong> {{ movies.Year }}</p>
-      <p><strong>Rating:</strong> {{ movies.imdbRating }}</p>
-      <p><strong>Genere:</strong> {{ movies.Genre }}</p>
-      <p><strong>Descrizione:</strong> {{ movies.Plot }}</p>
-      <p><strong>Attori:</strong> {{ movies.Actors }}</p>
-      <img ng-src="{{ movies.Poster }}" alt="{{ movies.Title }} poster" class="img-fluid">
+    <div class="movie-details" ng-if="movie !== undefined">
+      <h2>{{ movie.Title }}</h2>
+      <p><strong>Anno:</strong> {{ movie.Year }}</p>
+      <p><strong>Rating:</strong> {{ movie.imdbRating }}</p>
+      <p><strong>Genere:</strong> {{ movie.Genre }}</p>
+      <p><strong>Descrizione:</strong> {{ movie.Plot }}</p>
+      <p><strong>Attori:</strong> {{ movie.Actors }}</p>
+      <img ng-src="{{ movie.Poster }}" class="img-fluid">
     </div>
-    <div class="no-movies-found" ng-if="movies == undefined">No movies found.</div>
+    <div class="no-movies-found" ng-if="movie == undefined">Fai una ricerca per visualizzare film.</div>
+    <div class="no-movies-found" ng-if="movie.Response == False">{{ movies.Error }}</div>
   </div>
 </body>
 
